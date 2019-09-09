@@ -1,0 +1,203 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "IP lik",
+  "description": "Information about IP",
+  "developer_name": "Nesivmi - nesidizayn.com",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.5
+  },
+  "preferences": [
+    {
+      "id": "iplik",
+      "type": "keyword",
+      "name": "IPlik",
+      "description": "Find IP or Address Infos",
+      "default_value": "ip"
+    },
+    {
+      "id": "query",
+      "type": "select",
+      "name": "query",
+      "description": "IP used for the query. Example; 173.194.67.94",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "country",
+      "type": "select",
+      "name": "country",
+      "description": "Country name. Example; ",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "countryCode",
+      "type": "select",
+      "name": "countryCode",
+      "description": "Two-letter country code ISO 3166-1 alpha-2. Example; US",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "region",
+      "type": "select",
+      "name": "region",
+      "description": "Region/state short code (FIPS or ISO). Example; CA or 10",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "regionName",
+      "type": "select",
+      "name": "regionName",
+      "description": "Region/state. Example; California",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "city",
+      "type": "select",
+      "name": "city",
+      "description": "City. Example; Mountain View",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "status",
+      "type": "select",
+      "name": "status",
+      "description": "success or fail. Example; success",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "message",
+      "type": "select",
+      "name": "message",
+      "description": "included only when status is fail. Can be one of the following: private range, reserved range, invalid query. Example; invalid query",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "continent",
+      "type": "select",
+      "name": "continent",
+      "description": "Continent name. Example; North America",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "continentCode",
+      "type": "select",
+      "name": "continentCode",
+      "description": "Two-letter continent code. Example; NA",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "district",
+      "type": "select",
+      "name": "district",
+      "description": "District (subdivision of city). Example; Old Farm District",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "zip",
+      "type": "select",
+      "name": "zip",
+      "description": "Zip code. Example; 94043",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "lat",
+      "type": "select",
+      "name": "Latitude",
+      "description": "Latitude. Example; 37.4192",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "lon",
+      "type": "select",
+      "name": "lon",
+      "description": "Longitude. Example; -122.0574",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "currency",
+      "type": "select",
+      "name": "currency",
+      "description": "National currency. Example; USD",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "isp",
+      "type": "select",
+      "name": "isp",
+      "description": "ISP name. Example; Google",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "org",
+      "type": "select",
+      "name": "org",
+      "description": "Organization name. Example; Google",
+      "options": ["Yes","No"],
+      "default_value": "Yes"
+    },
+    {
+      "id": "timezone",
+      "type": "select",
+      "name": "timezone",
+      "description": "City timezone. Example; America/Los_Angeles",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "as",
+      "type": "select",
+      "name": "as",
+      "description": "AS number and organization, separated by space (RIR). Empty for IP blocks not being announced in BGP tables. Example; AS15169 Google Inc.",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "asname",
+      "type": "select",
+      "name": "asname",
+      "description": "AS name (RIR). Empty for IP blocks not being announced in BGP tables. Example; GOOGLE",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "reverse",
+      "type": "select",
+      "name": "reverse",
+      "description": "Reverse DNS of the IP. Example; wi-in-f94.1e100.net",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "mobile",
+      "type": "select",
+      "name": "mobile",
+      "description": "Mobile (cellular) connection. Example; true",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    },
+    {
+      "id": "proxy",
+      "type": "select",
+      "name": "proxy",
+      "description": "Proxy (anonymous). Example; true",
+      "options": ["Yes","No"],
+      "default_value": "No"
+    }
+  ]
+}
