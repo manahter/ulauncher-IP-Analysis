@@ -2,7 +2,7 @@
 
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/nesivmi/ulauncher-translate)
 
-> [Translate v1.0](https://github.com/nesivmi/ulauncher-iplik)
+> [IPlik v1.0](https://github.com/nesivmi/ulauncher-iplik)
 
 ## Preview
 
