@@ -31,7 +31,7 @@ https://github.com/nesivmi/ulauncher-iplik
 ## Prefrences
 
 * **Display** - Select Yes/No
-![Preferences](pref.gif)
+![Preferences](images/pref.gif)
 
 ## Links
 
