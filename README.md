@@ -8,6 +8,8 @@
 
 ![Preview](images/prev.gif)
 
+**Note!** The limit is 150 requests per minute from an IP address. ( More than enough :)
+
 ## Requirements
 
 * [Ulauncher](https://github.com/Ulauncher/Ulauncher) 5.0+
