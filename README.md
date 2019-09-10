@@ -3,17 +3,20 @@
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/nesivmi/ulauncher-translate)
 
 > [IPlik v1.0](https://github.com/nesivmi/ulauncher-iplik)
-
+```
+```
 ## Preview
 
 ![Preview](images/prev.gif)
 
 **Note!** The limit is 150 requests per minute from an IP address. ( More than enough :)
-
+```
+```
 ## Requirements
 
 * [Ulauncher](https://github.com/Ulauncher/Ulauncher) 5.0+
-
+```
+```
 ## Install
 
 Open ulauncher preferences window -> extensions -> add extension and paste the following url:
@@ -21,7 +24,8 @@ Open ulauncher preferences window -> extensions -> add extension and paste the f
 ```
 https://github.com/nesivmi/ulauncher-iplik
 ```
-
+```
+```
 ## Usage
 
 * > ip
@@ -35,7 +39,8 @@ https://github.com/nesivmi/ulauncher-iplik
 * **Display** - Select Yes/No
 
 ![Preferences](images/pref.gif)
-
+```
+```
 ## Links
 
 * [Api Link ip-api.com](http://ip-api.com/)
