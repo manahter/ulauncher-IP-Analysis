@@ -1,4 +1,4 @@
-# Ulauncher Iplik (IP Query)
+# Ulauncher - Iplik (IP Query)
 
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/nesivmi/ulauncher-translate)
 
