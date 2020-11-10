@@ -1,8 +1,8 @@
-# Ulauncher - IPlik (IP Query)
+# Ulauncher - IP Analysis
 
-[![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/nesivmi/ulauncher-translate)
+[![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/manahter/ulauncher-translate)
 
-> [IPlik v1.0](https://github.com/nesivmi/ulauncher-iplik)
+> [IPlik v1.0](https://github.com/manahter/ulauncher-iplik)
 ```
 ```
 ## Preview
