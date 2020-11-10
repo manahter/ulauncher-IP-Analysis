@@ -1,8 +1,8 @@
 # Ulauncher - IP Analysis
 
-[![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/manahter/ulauncher-translate)
+[![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/manahter/ulauncher-IP-Analysis)
 
-> [IP Analysis v1.0](https://github.com/manahter/ulauncher-iplik)
+> [IP Analysis v1.0](https://github.com/manahter/ulauncher-IP-Analysis)
 ```
 ```
 ## Preview
