@@ -2,7 +2,7 @@
 
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg)](https://github.com/manahter/ulauncher-translate)
 
-> [IPlik v1.0](https://github.com/manahter/ulauncher-iplik)
+> [IP Analysis v1.0](https://github.com/manahter/ulauncher-iplik)
 ```
 ```
 ## Preview
