@@ -22,7 +22,7 @@
 Open ulauncher preferences window -> extensions -> add extension and paste the following url:
 
 ```
-https://github.com/nesivmi/ulauncher-iplik
+https://github.com/manahter/ulauncher-IP-Analysis
 ```
 ```
 ```
