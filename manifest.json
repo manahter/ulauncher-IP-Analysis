@@ -1,8 +1,8 @@
 {
   "required_api_version": "^2.0.0",
-  "name": "IP lik",
+  "name": "IP Analysis",
   "description": "Information about IP",
-  "developer_name": "Nesivmi - nesidizayn.com",
+  "developer_name": "manahter",
   "icon": "images/icon.png",
   "options": {
     "query_debounce": 0.5
