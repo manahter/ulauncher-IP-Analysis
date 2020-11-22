@@ -20,7 +20,7 @@ class IplikExtension(Extension):
 
 
 descriptions = {
-    "query" : ["Associated public IP",0],
+    "query" : ["Associated Public IP",0],
     "status" : ["Status",0],
     "message" : ["Message",1],
     "continent" : ["Continent Name",2],
