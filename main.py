@@ -16,7 +16,7 @@ class IplikExtension(Extension):
 
 
 descriptions = {
-    "query" : ["Query",0],
+    "query" : ["Associated IP",0],
     "status" : ["Status",0],
     "message" : ["Message",1],
     "continent" : ["Continent Name",2],
@@ -54,6 +54,15 @@ class KeywordQueryEventListener(EventListener):
         liste_str = ",".join(liste)
         json_data = get("http://ip-api.com/json/{}?fields={}".format(query, liste_str)).json()
         
+        if 'message' in json_data.keys():
+            return RenderResultListAction([
+                ExtensionResultItem(icon='images/icon.png',
+                    name='Invalid query',
+                    description='No information for query `{}`'.format(query),
+                    on_enter=HideWindowAction()
+                )
+            ])
+
         liste_sirali = [i for i in json_data.keys()]
         liste_sirali.sort(key=sirasi)
 
