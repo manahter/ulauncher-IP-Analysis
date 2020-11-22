@@ -10,7 +10,7 @@ from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAct
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 from ulauncher.api.shared.action.OpenUrlAction import OpenUrlAction
 
-from src.hosts import show_hosts_items
+from src.hosts import show_hosts_items, get_host_ip
 
 
 class IplikExtension(Extension):
@@ -20,7 +20,7 @@ class IplikExtension(Extension):
 
 
 descriptions = {
-    "query" : ["Associated IP",0],
+    "query" : ["Associated Public IP",0],
     "status" : ["Status",0],
     "message" : ["Message",1],
     "continent" : ["Continent Name",2],
@@ -77,11 +77,36 @@ class KeywordQueryEventListener(EventListener):
         if query == 'hosts':
             return RenderResultListAction(show_hosts_items())
         
+        host_ip = get_host_ip(query)
+        items = []
+
+        if host_ip is not None:
+            query = host_ip
+
+            items = [
+                ExtensionResultItem(
+                    icon='images/me.png',
+                    name=host_ip,
+                    description='Associated host IP',
+                    on_enter=CopyToClipboardAction(host_ip)
+                )
+            ]
+
         liste = [i if extension.preferences[i] == "Yes" else "" for i in extension.preferences.keys()]
         liste_str = ",".join(liste)
         json_data = get("http://ip-api.com/json/{}?fields={}".format(query, liste_str)).json()
         
         if 'message' in json_data.keys():
+            if host_ip is not None:
+                return RenderResultListAction(items + [
+                    ExtensionResultItem(
+                        icon='images/icon.png',
+                        name='Local IP',
+                        description='No public information',
+                        on_enter=HideWindowAction()
+                    )
+                ])
+
             return RenderResultListAction([
                 ExtensionResultItem(icon='images/icon.png',
                     name='Invalid query',
@@ -93,7 +118,7 @@ class KeywordQueryEventListener(EventListener):
         liste_sirali = [i for i in json_data.keys()]
         liste_sirali.sort(key=sirasi)
 
-        items = [
+        items = items + [
             ExtensionResultItem(icon='images/icon.png',
                                 name=str(json_data[i]),
                                 description=descriptions[i][0],
