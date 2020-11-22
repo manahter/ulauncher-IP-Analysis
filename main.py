@@ -7,6 +7,8 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
+from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
+from ulauncher.api.shared.action.OpenUrlAction import OpenUrlAction
 
 
 class IplikExtension(Extension):
@@ -49,6 +51,26 @@ def sirasi(item):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         query = event.get_argument() or str()
+
+        if query == 'local' or query == 'private':
+            try:
+                from src.local import get_local_items
+
+                return RenderResultListAction([
+                    ExtensionResultItem(icon='images/me.png',
+                        name="My local/private IP Information",
+                        description="Select for public information",
+                        on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' '))
+                ] + get_local_items())
+            except ImportError:
+                return RenderResultListAction([
+                    ExtensionResultItem(
+                        icon='images/icon.png',
+                        name='Ifcfg python package is required',
+                        description='Installation: pip3 install ifcfg --user',
+                        on_enter=OpenUrlAction('https://pypi.org/project/ifcfg/')
+                    )
+                ])
         
         liste = [i if extension.preferences[i] == "Yes" else "" for i in extension.preferences.keys()]
         liste_str = ",".join(liste)
@@ -76,9 +98,9 @@ class KeywordQueryEventListener(EventListener):
         
         if not query:
             o = ExtensionResultItem(icon='images/me.png',
-                                name="My IP Information",
-                                description="",
-                                on_enter=HideWindowAction())
+                                name="My Public IP Information",
+                                description="Select for local/private information",
+                                on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' local'))
             items = [o] + items
         return RenderResultListAction(items)
 
