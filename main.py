@@ -98,7 +98,7 @@ class KeywordQueryEventListener(EventListener):
         
         if not query:
             o = ExtensionResultItem(icon='images/me.png',
-                                name="My public IP Information",
+                                name="My Public IP Information",
                                 description="Select for local/private information",
                                 on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' local'))
             items = [o] + items
