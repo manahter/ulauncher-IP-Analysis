@@ -3,7 +3,7 @@ from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAct
 
 
 def get_hosts():
-    hosts = []
+    hosts = {}
 
     with open('/etc/hosts', 'r') as f:
         for line in f:
@@ -17,7 +17,7 @@ def get_hosts():
             if ip.strip()[0] in ['#', '/'] or not ip or not host:
                 continue
             
-            hosts.append((host, ip))
+            hosts[host] = ip
 
     return hosts
 
@@ -29,5 +29,9 @@ def show_hosts_items():
             name=host,
             description=ip,
             on_enter=CopyToClipboardAction(ip))
-        for (host, ip) in get_hosts()
+        for (host, ip) in get_hosts().items()
     ]
+
+
+def get_host_ip(query):
+    return get_hosts().get(query)
