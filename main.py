@@ -10,6 +10,8 @@ from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAct
 from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 from ulauncher.api.shared.action.OpenUrlAction import OpenUrlAction
 
+from src.hosts import show_hosts_items
+
 
 class IplikExtension(Extension):
     def __init__(self):
@@ -52,7 +54,7 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         query = event.get_argument() or str()
 
-        if query == 'local' or query == 'private':
+        if query in ['local', 'private']:
             try:
                 from src.local import get_local_items
 
@@ -71,6 +73,9 @@ class KeywordQueryEventListener(EventListener):
                         on_enter=OpenUrlAction('https://pypi.org/project/ifcfg/')
                     )
                 ])
+
+        if query == 'hosts':
+            return RenderResultListAction(show_hosts_items())
         
         liste = [i if extension.preferences[i] == "Yes" else "" for i in extension.preferences.keys()]
         liste_str = ",".join(liste)
