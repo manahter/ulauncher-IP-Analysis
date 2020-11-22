@@ -6,6 +6,7 @@ from ulauncher.api.shared.event import KeywordQueryEvent
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
+from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
 
 
 class IplikExtension(Extension):
@@ -60,7 +61,7 @@ class KeywordQueryEventListener(EventListener):
             ExtensionResultItem(icon='images/icon.png',
                                 name=str(json_data[i]),
                                 description=descriptions[i][0],
-                                on_enter=HideWindowAction())
+                                on_enter=CopyToClipboardAction(str(json_data[i])))
             for i in liste_sirali
         ]
         
