@@ -11,11 +11,8 @@ from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 from ulauncher.api.shared.action.OpenUrlAction import OpenUrlAction
 
 from src.hosts import show_hosts_items, get_host_ip
-
-
-ICON_IMAGE = 'images/icon.png'
-ME_IMAGE = 'images/me.png'
-ANALYZE_IMAGE = 'images/analyze.png'
+from src.analyze import show_analyze_items
+from src.consts import ICON_IMAGE, ME_IMAGE, ANALYZE_IMAGE
 
 
 class IplikExtension(Extension):
@@ -87,6 +84,9 @@ class KeywordQueryEventListener(EventListener):
 
         if query == 'hosts':
             return RenderResultListAction(show_hosts_items())
+
+        if query.startswith('analyze'):
+            return RenderResultListAction(show_analyze_items(extension.preferences['iplik'], query[8:].strip()))
 
         host_ip = get_host_ip(query)
         items = []
