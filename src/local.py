@@ -4,7 +4,7 @@ from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAct
 
 def generate_local_item(name, ip, description):
     return ExtensionResultItem(icon='images/icon.png',
-        name='{}: {}'.format(name, ip),
+        name='{} - {}'.format(name, ip),
         description=description,
         on_enter=CopyToClipboardAction(ip)
     )

@@ -60,7 +60,7 @@ class KeywordQueryEventListener(EventListener):
 
                 return RenderResultListAction([
                     ExtensionResultItem(icon='images/me.png',
-                        name="My local/private IP Information",
+                        name="My local/private IP Information:",
                         description="Select for public information",
                         on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' '))
                 ] + get_local_items())
@@ -76,7 +76,7 @@ class KeywordQueryEventListener(EventListener):
 
         if query == 'hosts':
             return RenderResultListAction(show_hosts_items())
-        
+
         host_ip = get_host_ip(query)
         items = []
 
@@ -95,7 +95,7 @@ class KeywordQueryEventListener(EventListener):
         liste = [i if extension.preferences[i] == "Yes" else "" for i in extension.preferences.keys()]
         liste_str = ",".join(liste)
         json_data = get("http://ip-api.com/json/{}?fields={}".format(query, liste_str)).json()
-        
+
         if 'message' in json_data.keys():
             if host_ip is not None:
                 return RenderResultListAction(items + [
@@ -125,10 +125,10 @@ class KeywordQueryEventListener(EventListener):
                                 on_enter=CopyToClipboardAction(str(json_data[i])))
             for i in liste_sirali
         ]
-        
+
         if not query:
             o = ExtensionResultItem(icon='images/me.png',
-                                name="My Public IP Information",
+                                name="My Public IP Information:",
                                 description="Select for local/private information",
                                 on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' local'))
             items = [o] + items
