@@ -11,6 +11,8 @@ from ulauncher.api.shared.action.SetUserQueryAction import SetUserQueryAction
 from ulauncher.api.shared.action.OpenUrlAction import OpenUrlAction
 
 from src.hosts import show_hosts_items, get_host_ip
+from src.analyze import show_analyze_items
+from src.consts import ICON_IMAGE, ME_IMAGE, ANALYZE_IMAGE
 
 
 class IplikExtension(Extension):
@@ -59,15 +61,21 @@ class KeywordQueryEventListener(EventListener):
                 from src.local import get_local_items
 
                 return RenderResultListAction([
-                    ExtensionResultItem(icon='images/me.png',
-                        name="My local/private IP Information",
+                    ExtensionResultItem(
+                        icon=ME_IMAGE,
+                        name="My local/private IP Information:",
                         description="Select for public information",
-                        on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' '))
+                        on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' ')),
+                    ExtensionResultItem(
+                        icon=ANALYZE_IMAGE,
+                        name="Analyze local network",
+                        description="Select to get hosts in your local network",
+                        on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' analyze ')),
                 ] + get_local_items())
             except ImportError:
                 return RenderResultListAction([
                     ExtensionResultItem(
-                        icon='images/icon.png',
+                        icon=ICON_IMAGE,
                         name='Ifcfg python package is required',
                         description='Installation: pip3 install ifcfg --user',
                         on_enter=OpenUrlAction('https://pypi.org/project/ifcfg/')
@@ -76,7 +84,10 @@ class KeywordQueryEventListener(EventListener):
 
         if query == 'hosts':
             return RenderResultListAction(show_hosts_items())
-        
+
+        if query.startswith('analyze'):
+            return RenderResultListAction(show_analyze_items(extension.preferences['iplik'], query[8:].strip()))
+
         host_ip = get_host_ip(query)
         items = []
 
@@ -85,7 +96,7 @@ class KeywordQueryEventListener(EventListener):
 
             items = [
                 ExtensionResultItem(
-                    icon='images/me.png',
+                    icon=ME_IMAGE,
                     name=host_ip,
                     description='Associated host IP',
                     on_enter=CopyToClipboardAction(host_ip)
@@ -95,12 +106,12 @@ class KeywordQueryEventListener(EventListener):
         liste = [i if extension.preferences[i] == "Yes" else "" for i in extension.preferences.keys()]
         liste_str = ",".join(liste)
         json_data = get("http://ip-api.com/json/{}?fields={}".format(query, liste_str)).json()
-        
+
         if 'message' in json_data.keys():
             if host_ip is not None:
                 return RenderResultListAction(items + [
                     ExtensionResultItem(
-                        icon='images/icon.png',
+                        icon=ICON_IMAGE,
                         name='Local IP',
                         description='No public information',
                         on_enter=HideWindowAction()
@@ -108,7 +119,8 @@ class KeywordQueryEventListener(EventListener):
                 ])
 
             return RenderResultListAction([
-                ExtensionResultItem(icon='images/icon.png',
+                ExtensionResultItem(
+                    icon=ICON_IMAGE,
                     name='Invalid query',
                     description='No information for query `{}`'.format(query),
                     on_enter=HideWindowAction()
@@ -119,19 +131,23 @@ class KeywordQueryEventListener(EventListener):
         liste_sirali.sort(key=sirasi)
 
         items = items + [
-            ExtensionResultItem(icon='images/icon.png',
-                                name=str(json_data[i]),
-                                description=descriptions[i][0],
-                                on_enter=CopyToClipboardAction(str(json_data[i])))
-            for i in liste_sirali
+            ExtensionResultItem(
+                icon=ICON_IMAGE,
+                name=str(json_data[i]),
+                description=descriptions[i][0],
+                on_enter=CopyToClipboardAction(str(json_data[i]))
+            ) for i in liste_sirali
         ]
-        
+
         if not query:
-            o = ExtensionResultItem(icon='images/me.png',
-                                name="My Public IP Information",
-                                description="Select for local/private information",
-                                on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' local'))
-            items = [o] + items
+            items = [
+                ExtensionResultItem(
+                icon=ME_IMAGE,
+                name="My Public IP Information:",
+                description="Select for local/private information",
+                on_enter=SetUserQueryAction(extension.preferences['iplik'] + ' local')
+            )] + items
+
         return RenderResultListAction(items)
 
 
