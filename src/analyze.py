@@ -48,10 +48,33 @@ def show_analyze_items(command, query):
 
     args = query.split('/')
     searched = args[0]
-    mask = args[1] if len(args) == 2 else 24
+    searched_ip = None
+    mask = args[1] if len(args) == 2 else '24'
+
+    if not mask.isnumeric() or int(mask) < 20:
+        return [
+            ExtensionResultItem(
+                icon=ANALYZE_IMAGE,
+                name='Network mask must be between 20 and 32',
+                description='Select for default mask',
+                on_enter=SetUserQueryAction(f'{command} analyze {searched}/24')
+            )
+        ]
+
+    mask = int(mask)
+    possible_ip = searched.split('.')
+
+    if len(possible_ip) == 4:
+        if mask >= 24:
+            searched_ip = '.'.join(possible_ip[:2]) + '.'
+        elif mask >= 16:
+            searched_ip = '.'.join(possible_ip[:1]) + '.'
+        elif mask >= 8:
+            searched_ip = '.'.join(possible_ip[:0]) + '.'
+
 
     for (name, ip) in local_hosts:
-        if ip == searched or name == searched:
+        if (searched_ip is not None and ip.startswith(searched_ip)) or ip == searched or name == searched:
             ip_mask = f'{ip}/{mask}'
             analyzed_hosts = []
 
@@ -59,7 +82,14 @@ def show_analyze_items(command, query):
             errorcode = process.wait()
 
             if errorcode != 0:
-                return []
+                return [
+                    ExtensionResultItem(
+                        icon=ANALYZE_IMAGE,
+                        name='Nmap failed or it is not installed',
+                        description='Only associated local ips are allowed',
+                        on_enter=HideWindowAction()
+                    )
+                ]
 
             result = process.stdout.read().decode()
             lines = result.split('\n')[1:-2]
